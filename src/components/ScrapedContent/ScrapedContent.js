@@ -13,8 +13,12 @@ const ScrapedContent = ({ scrapedData }) => {
       .map(data => generateMarkdown(data))
       .join('\n---\n\n');
     
+    const filename = scrapedData[0].title
+      ? `${scrapedData[0].title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.md`
+      : 'scraped-content.md';
+    
     const blob = new Blob([combinedMarkdown], { type: 'text/markdown;charset=utf-8' });
-    saveAs(blob, 'scraped-content.md');
+    saveAs(blob, filename);
   };
 
   const handleExportDoc = async () => {

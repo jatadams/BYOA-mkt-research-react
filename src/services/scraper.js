@@ -3,7 +3,17 @@ import { Document, Packer, Paragraph, HeadingLevel, TextRun } from 'docx';
 
 export const scrapeWebpage = async (url) => {
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+      },
+      mode: 'cors'
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
     const html = await response.text();
     const $ = load(html);
 
@@ -102,21 +112,6 @@ export const generateMarkdown = (scrapedData) => {
     markdown += `## Description\n${scrapedData.description}\n\n`;
   }
 
-  markdown += `## Content Structure\n\n`;
-  
-  // Add heading outline
-  ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].forEach(level => {
-    const headings = scrapedData.headings[level];
-    if (headings.length > 0) {
-      markdown += `### ${level.toUpperCase()} Headings\n`;
-      headings.forEach(h => {
-        const indent = '  '.repeat(parseInt(level[1]) - 1);
-        markdown += `${indent}- ${h.text}\n`;
-      });
-      markdown += '\n';
-    }
-  });
-
   markdown += `## Full Content\n\n`;
   scrapedData.contentSections.forEach(section => {
     if (section.heading) {
@@ -161,40 +156,11 @@ export const generateDocx = async (scrapedData) => {
             text: ''  // Empty line
           }),
           new Paragraph({
-            text: 'Content Structure',
+            text: 'Full Content',
             heading: HeadingLevel.HEADING_1
           })
         ]
       }]
-    });
-
-    // Add headings structure
-    for (const level of ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']) {
-      const headings = scrapedData.headings[level];
-      if (headings.length > 0) {
-        doc.addSection({
-          children: [
-            new Paragraph({
-              text: `${level.toUpperCase()} Headings`,
-              heading: HeadingLevel.HEADING_2
-            }),
-            ...headings.map(h => new Paragraph({
-              text: `${' '.repeat((parseInt(level[1]) - 1) * 2)}• ${h.text}`
-            })),
-            new Paragraph({ text: '' })  // Empty line
-          ]
-        });
-      }
-    }
-
-    // Add full content
-    doc.addSection({
-      children: [
-        new Paragraph({
-          text: 'Full Content',
-          heading: HeadingLevel.HEADING_1
-        })
-      ]
     });
 
     // Add content sections
