@@ -11,8 +11,8 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <h1>Market Research URL Organizer</h1>
+    <div className="content-container">
+      <h1>Market Research Scraper</h1>
       <URLForm onSubmit={handleScrapedData} />
       <ScrapedContent scrapedData={scrapedData} />
     </div>

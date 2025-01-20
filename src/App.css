@@ -36,3 +36,50 @@
     transform: rotate(360deg);
   }
 }
+
+/* Container styling */
+.content-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Text hierarchy */
+h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.875rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.625rem;
+}
+
+/* Regular text */
+p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+/* Quote styling */
+blockquote {
+  font-style: italic;
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  border-left: 4px solid #ccc;
+}

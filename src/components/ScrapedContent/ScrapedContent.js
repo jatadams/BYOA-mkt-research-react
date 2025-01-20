@@ -57,30 +57,6 @@ const ScrapedContent = ({ scrapedData }) => {
               </div>
             )}
 
-            <div className="structure-section">
-              <h4>Content Structure</h4>
-              {['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].map(level => {
-                const headings = data.headings[level];
-                if (headings.length === 0) return null;
-                
-                return (
-                  <div key={level} className="heading-group">
-                    <h5>{level.toUpperCase()} Headings</h5>
-                    <ul>
-                      {headings.map((h, i) => (
-                        <li 
-                          key={i} 
-                          style={{ marginLeft: `${(parseInt(level[1]) - 1) * 20}px` }}
-                        >
-                          {h.text}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                );
-              })}
-            </div>
-
             <div className="content-sections">
               <h4>Full Content</h4>
               {data.contentSections.map((section, i) => (
@@ -92,7 +68,10 @@ const ScrapedContent = ({ scrapedData }) => {
                     </div>
                   )}
                   {section.paragraphs.map((p, j) => (
-                    <p key={j} className="paragraph">{p}</p>
+                    <div key={j} className="text-content">
+                      <span className="text-indicator">TEXT</span>
+                      <p className="paragraph">{p}</p>
+                    </div>
                   ))}
                 </div>
               ))}

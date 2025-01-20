@@ -107,13 +107,46 @@
 .content-sections .section {
   margin: 1.5rem 0;
   padding: 0.5rem 0;
+  text-align: left;
 }
 
 .content-sections .heading {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.content-sections .heading h5 {
+  margin: 0;
+  color: #2c3e50;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* Heading hierarchy styles */
+.content-sections .heading.h1 h5 {
+  font-size: 2rem;
+}
+
+.content-sections .heading.h2 h5 {
+  font-size: 1.75rem;
+}
+
+.content-sections .heading.h3 h5 {
+  font-size: 1.5rem;
+}
+
+.content-sections .heading.h4 h5 {
+  font-size: 1.25rem;
+}
+
+.content-sections .heading.h5 h5 {
+  font-size: 1.1rem;
+}
+
+.content-sections .heading.h6 h5 {
+  font-size: 1rem;
 }
 
 .content-sections .heading-level {
@@ -123,19 +156,36 @@
   border-radius: 3px;
   font-size: 0.8rem;
   font-weight: 600;
+  white-space: nowrap;
+  height: fit-content;
+  margin-top: 0.5rem;
 }
 
-.content-sections h5 {
-  margin: 0;
-  color: #2c3e50;
-  font-size: 1.1rem;
+.content-sections .text-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin: 0.75rem 0;
+}
+
+.content-sections .text-indicator {
+  background-color: #e9ecef;
+  color: #495057;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  height: fit-content;
+  margin-top: 0.25rem;
 }
 
 .content-sections .paragraph {
   color: #495057;
   line-height: 1.6;
-  margin: 0.75rem 0;
+  margin: 0;
   font-size: 1rem;
+  flex: 1;
 }
 
 .description {
